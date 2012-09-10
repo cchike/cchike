@@ -20,14 +20,13 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem "rails"
-
-group :development, :test do
-  gem "sqlite3-ruby", :require => "sqlite3"
+group :development do
+  gem 'sqlite3'
 end
 
 group :production do
-  gem "pg"
+  gem 'taps'
+  gem 'pg'
 end
 
 gem 'jquery-rails'
