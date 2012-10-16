@@ -1,11 +1,9 @@
 Plusdollar::Application.routes.draw do
+  resources :orders
+
   resources :users
 
-  resources :posts
-
   get "home/index"
-
-  resources :pledges
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
