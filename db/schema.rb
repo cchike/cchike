@@ -19,17 +19,9 @@ ActiveRecord::Schema.define(:version => 20121015212128) do
     t.text     "contents"
     t.string   "type"
     t.string   "status"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "pledges", :force => true do |t|
-    t.string   "issue_url"
-    t.string   "issue_title"
-    t.string   "string"
-    t.decimal  "amount"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
   end
 
   create_table "users", :force => true do |t|

@@ -19,6 +19,14 @@ end
 
 group :development do
   gem 'sqlite3'
+  gem 'rspec-rails'
+  gem 'debugger'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'rspec-rails'
+  gem 'debugger'
 end
 
 group :production do

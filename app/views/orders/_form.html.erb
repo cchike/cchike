@@ -48,9 +48,9 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :user, class: "control-label" %><br />
+    <%= f.label :user_id, class: "control-label" %><br />
     <div>
-    	<%= f.collection_select :user, User.all, :id, :name %>
+    	<%= f.collection_select :user_id, User.all, :id, :name %>
     </div>
   </div>
   <div class="actions">

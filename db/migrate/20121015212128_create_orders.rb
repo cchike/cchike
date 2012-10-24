@@ -7,6 +7,7 @@ class CreateOrders < ActiveRecord::Migration
       t.text :contents
       t.string :type
       t.string :status
+      t.belongs_to :user
 
       t.timestamps
     end
