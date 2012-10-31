@@ -1,11 +1,13 @@
 require 'spec_helper'
 
 describe "Users" do
+  before do 
+    sign_in
+  end
   describe "GET /users" do
     it "user forms require all fields" do
       visit users_path
       click_link "New User"
-      fill_in "Name", with: "Chris Chike"
       click_button "Create User"
       
       error_message = "Email can't be blank"

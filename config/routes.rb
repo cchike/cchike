@@ -1,4 +1,6 @@
 Plusdollar::Application.routes.draw do
+  devise_for :users
+
   resources :orders
 
   resources :users
