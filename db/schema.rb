@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(:version => 20121031004355) do
     t.string   "name"
     t.string   "location"
     t.text     "contents"
-    t.string   "type"
+    t.string   "ordertype"
     t.string   "status"
     t.integer  "user_id"
     t.datetime "created_at", :null => false

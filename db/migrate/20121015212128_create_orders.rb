@@ -5,7 +5,7 @@ class CreateOrders < ActiveRecord::Migration
       t.integer :id
       t.string :location
       t.text :contents
-      t.string :type
+      t.string :ordertype
       t.string :status
       t.belongs_to :user
 
