@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.incoming
+    @orders = Order.descending_id
 
     respond_to do |format|
       format.html # index.html.erb
@@ -42,14 +42,11 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order])
 
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render json: @order, status: :created, location: @order }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
+    if @order.save
+       Notifications.new_order(@order).deliver
+      redirect_to @order, notice: 'Order was successfully created.' 
+    else
+      render action: "new" 
     end
   end
 

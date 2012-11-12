@@ -23,6 +23,7 @@ group :development do
   gem 'sqlite3'
   gem 'rspec-rails'
   gem 'debugger'
+  gem 'letter_opener', github: 'ryanb/letter_opener'
 end
 
 group :test do

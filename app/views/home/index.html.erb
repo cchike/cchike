@@ -34,8 +34,8 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><%= link_to "Users", users_path %></li>
+              <li><%= link_to "Orders", orders_path %></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -46,12 +46,6 @@
 
       <h1>Vago Logistics Orders</h1>
       <a href="https://github.com/cchike/cchike">Click here to visit my GitHub!</a>
-      <br /><%= link_to "Users", users_path %>
-      <br /><%= link_to "Orders", orders_path %>
-      <form>
-      	<input type="text" value="Here is a form field"/>
-      	<input type="submit" class="btn btn-primary" value="Submit"/>
-      </form>
       
 
     </div> <!-- /container -->
