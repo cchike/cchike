@@ -1,8 +1,18 @@
 class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
+  
+  #Need to implement scopes
+  def order
+    if current_user.vendor?
+      Order.where(:vendor => current_user.email)
+    else
+      Order.all
+    end
+  end
+  
   def index
-    @orders = Order.descending_id
+    @orders = order
 
     respond_to do |format|
       format.html # index.html.erb
@@ -54,15 +64,16 @@ class OrdersController < ApplicationController
   # PUT /orders/1.json
   def update
     @order = Order.find(params[:id])
-
-    respond_to do |format|
-      if @order.update_attributes(params[:order])
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+    if @order.update_attributes(params[:order])
+      if @order.status == "Outgoing" && !(attributes["status"] == "Outgoing") && @order.customer_email
+        Notifications.outgoing_order(@order).deliver
       end
+      if @order.ready_for_pickup && !attributes["ready_for_pickup"] && @order.user
+        Notifications.pickup_order(@order).deliver
+      end
+      redirect_to @order, notice: 'Order was successfully updated.'
+    else
+      render action: "edit"
     end
   end
 

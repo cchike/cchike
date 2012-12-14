@@ -1,8 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
-  <%= @order.name %>
+  <b>Customer Name:</b>
+  <%= @order.customer_name %>
+</p>
+
+<p>
+  <b>Customer Email:</b>
+  <%= @order.customer_email %>
 </p>
 
 <p>
@@ -12,7 +17,7 @@
 
 <p>
   <b>Location:</b>
-  <%= @order.location %>
+  <%= @order.address %>
 </p>
 
 <p>
@@ -21,13 +26,23 @@
 </p>
 
 <p>
-  <b>Type:</b>
-  <%= @order.ordertype %>
+  <b>Status:</b>
+  <%= @order.status %>
 </p>
 
 <p>
-  <b>Status:</b>
-  <%= @order.status %>
+  <b>Vendor:</b>
+  <%= @order.vendor %>
+</p>
+
+<p>
+  <b>Ready For Pickup:</b>
+  <%= @order.ready_for_pickup %>
+</p>
+
+<p>
+  <b>Owner:</b>
+  <%= @order.user.email %>
 </p>
 
 

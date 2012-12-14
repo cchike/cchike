@@ -11,18 +11,34 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121031004355) do
+ActiveRecord::Schema.define(:version => 20121214172610) do
 
   create_table "orders", :force => true do |t|
-    t.string   "name"
-    t.string   "location"
+    t.string   "customer_name"
+    t.string   "address"
     t.text     "contents"
     t.string   "ordertype"
     t.string   "status"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "customer_email"
+    t.string   "vendor"
+    t.boolean  "ready_for_pickup"
   end
+
+  create_table "rails_admin_histories", :force => true do |t|
+    t.text     "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      :limit => 2
+    t.integer  "year",       :limit => 5
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
   create_table "users", :force => true do |t|
     t.datetime "created_at",                             :null => false
@@ -37,6 +53,8 @@ ActiveRecord::Schema.define(:version => 20121031004355) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.boolean  "vendor"
+    t.boolean  "admin"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

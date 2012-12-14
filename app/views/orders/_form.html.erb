@@ -11,12 +11,29 @@
     </div>
   <% end %>
 
+<% if current_user.vendor? %>
+	  <div class="control-group">
+	    <%= f.label :ready_for_pickup, class: "control-label" %><br />
+	    <div class="controls">
+	    	<%= f.check_box :ready_for_pickup %>
+	    </div>
+	  </div>
+  
+  <% else %>
   <div class="control-group">
-    <%= f.label :name, class: "control-label" %><br />
+    <%= f.label :customer_name, class: "control-label" %><br />
     <div class="controls">
-    	<%= f.text_field :name %>
+    	<%= f.text_field :customer_name %>
     </div>
   </div>
+  
+  <div class="control-group">
+    <%= f.label :customer_email, class: "control-label" %><br />
+    <div class="controls">
+    	<%= f.text_field :customer_email %>
+    </div>
+  </div>
+  
   <div class="control-group">
     <%= f.label :id, class: "control-label" %><br />
     <div class="controls">
@@ -24,9 +41,9 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :location, class: "control-label" %><br />
+    <%= f.label :address, class: "control-label" %><br />
     <div class="controls">
-    	<%= f.text_field :location %>
+    	<%= f.text_field :address %>
     </div>
   </div>
   <div class="control-group">
@@ -38,21 +55,24 @@
   <div class="control-group">
     <%= f.label :status, class: "control-label" %><br />
     <div class="controls">
-    	<%= f.collection_select :status, ["Incoming","Outgoing","Completed"], :to_str, :to_str%>
+    	<%= f.collection_select :status, ["Incoming","Outgoing","Completed"], :to_str, :to_str %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :ordertype, class: "control-label" %><br />
+    <%= f.label :vendor, class: "control-label" %><br />
     <div class="controls">
-    	<%= f.text_field :ordertype %>
+    	<%= f.collection_select :vendor, User.where(:vendor => true), :email, :email %>
     </div>
   </div>
+  
   <div class="control-group">
-    <%= f.label :user_id, class: "control-label" %><br />
+    <p>Current Owner:</p>
     <div>
-    	<%= f.collection_select :user_id, User.all, :id, :email %>
+    	<%= f.collection_select :user_id, User.where(:vendor => false), :id, :email %>
     </div>
   </div>
+  <% end %>
+  
   <div class="actions">
     <%= f.submit :class => 'btn btn-primary'%>
   </div>

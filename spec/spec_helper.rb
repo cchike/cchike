@@ -3,6 +3,14 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require 'capybara/rspec'
+
+module ::RSpec::Core
+  class ExampleGroup
+    include Capybara::DSL
+    include Capybara::RSpecMatchers
+  end
+end 
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -38,8 +46,8 @@ RSpec.configure do |config|
 end
 
 def sign_in
-  visitnew_user_session_path
+  visit new_user_session_path
   fill_in 'Email',with: 'cchike@seas.upenn.edu'
   fill_in 'Password',with: 'efil4sirhc'
-  click_button 'Signin'
+  click_button 'Sign in'
 end

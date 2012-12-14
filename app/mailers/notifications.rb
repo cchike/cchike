@@ -7,7 +7,21 @@ class Notifications < ActionMailer::Base
   #   en.notifications.new_order.subject
   #
   def new_order(order)
-    @greeting = "Hi Chris"
+    @greeting = "Hi"
+    @order = order
+
+    mail to: order.user.email
+  end
+  
+  def outgoing_order(order)
+    @greeting = "Hi"
+    @order = order
+    
+    mail to: order.customer_email
+  end
+  
+  def pickup_order(order)
+    @greeting = "Hi"
     @order = order
 
     mail to: order.user.email

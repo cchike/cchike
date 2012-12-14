@@ -1,9 +1,13 @@
 Plusdollar::Application.routes.draw do
+  
+
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   devise_for :users
 
   resources :orders
 
-  resources :users
+  # resources :users
 
   get "home/index"
 

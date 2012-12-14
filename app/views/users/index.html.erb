@@ -1,21 +1,39 @@
 <h1>Listing Users</h1>
 
-<table class="table">
-  <tr>
-    <th>Email</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<link rel="stylesheet" href="/assets/TableSorter/themes/blue/style.css"> 
+<script type="text/javascript" src="/assets/TableSorter/jquery-latest.js"></script> 
+<script type="text/javascript" src="/assets/TableSorter/jquery.tablesorter.js"></script> 
 
-<% @users.each do |user| %>
-  <tr>
-    <td><%= user.email %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<script>
+	
+	$(function() {
+		$("#myTable2").tablesorter({theme:'blue',widgets:['zebra'],widthFixed:true});
+	});
+
+</script>
+
+<table id="myTable2" class="tablesorter tablesorter-blue">
+	<thead>
+  <tr class="tablesorter-headerRow">
+    <th>Email</th>
+    <th>Vendor</th>
+    <th>Admin</th>
+    <th></th>
+    <th></th>
   </tr>
-<% end %>
+  </thead>
+
+	<tbody>
+	<% @users.each do |user| %>
+	  <tr>
+	    <td><%= user.email %></td>
+	    <td><%= user.vendor %></td>
+	    <td><%= user.admin %></td>
+	    <td><%= link_to 'Show', user %></td>
+	    <td><%= link_to 'Edit', edit_user_path(user) %></td>
+	  </tr>
+	<% end %>
+	</tbody>
 </table>
 
 <br />
