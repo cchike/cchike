@@ -7,7 +7,7 @@ Plusdollar::Application.routes.draw do
 
   resources :orders
 
-  # resources :users
+  #resources :users
 
   get "home/index"
 
